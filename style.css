@@ -74,3 +74,24 @@ body {
 .hide {
     display: none;
 }
+
+.hide {
+    display: none;
+  }
+  
+  .mode-selection {
+    text-align: center;
+    margin-top: 100px;
+  }
+  
+  .mode-selection button {
+    padding: 1rem;
+    margin: 1rem;
+    font-size: 1.2rem;
+    border-radius: 1rem;
+    border: none;
+    background-color: #191913;
+    color: white;
+    cursor: pointer;
+  }
+  
