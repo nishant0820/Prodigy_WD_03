@@ -44,6 +44,7 @@ body {
     color: #fff;
     border-radius: 1rem;
     border: none;
+    cursor: pointer;
 }
 
 #new-btn {
@@ -53,6 +54,7 @@ body {
     color: #fff;
     border-radius: 1rem;
     border: none;
+    cursor: pointer;
 }
 
 #msg {
