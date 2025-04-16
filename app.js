@@ -70,5 +70,5 @@ const checkWinner = () => {
     }
 };
 
-newGsmeBtn.addEventListener("click", resetGame);
+newGameBtn.addEventListener("click", resetGame);
 resetBtn.addEventListener("click", resetGame);
