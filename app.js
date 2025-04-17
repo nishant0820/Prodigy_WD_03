@@ -68,10 +68,16 @@ boxes.forEach((box) => {
             if (turn0) {
                 box.innerText = "O";
                 turn0 = false;
+                box.disabled = true; // Disable the clicked box
                 checkWinner();
-                if (!checkWinner()) {
-                    aiMove();  // AI makes its move after human
-                }
+
+                // Let UI update before AI move
+                setTimeout(() => {
+                    if (!checkWinner()) {
+                        aiMove();  // AI makes its move after human
+                    }
+                }, 100); // Slight delay to allow rendering
+
             }
         }
     });
