@@ -4,7 +4,17 @@ let newGameBtn = document.querySelector("#new-btn");
 let msgContainer = document.querySelector(".msg-container");
 let msg = document.querySelector("#msg");
 
+// Mode selection buttons and screens
+let vsHumanBtn = document.getElementById("vs-human");
+let vsAiBtn = document.getElementById("vs-ai");
+let mainGame = document.querySelector("main");
+let modeSelection = document.querySelector(".mode-selection");
+
+// Back button
+let backBtn = document.querySelector("#back-btn");
+
 let turn0 = true;
+let gameMode = ""; // 'human' or 'ai'
 
 const winPatterns = [
     [0, 1, 2],
@@ -17,18 +27,37 @@ const winPatterns = [
     [6, 7, 8],
 ];
 
+// Game mode button events
+vsHumanBtn.addEventListener("click", () => {
+    gameMode = "human";
+    modeSelection.classList.add("hide");
+    mainGame.classList.remove("hide");
+    enableBoxes();
+});
+
+vsAiBtn.addEventListener("click", () => {
+    gameMode = "ai";
+    modeSelection.classList.add("hide");
+    mainGame.classList.remove("hide");
+    alert("AI mode not implemented yet!");
+});
+
+// Resetting the game
 const resetGame = () => {
     turn0 = true;
     enableBoxes();
     msgContainer.classList.add("hide");
-}
+};
 
+// Box click logic (for human vs human only)
 boxes.forEach((box) => {
     box.addEventListener("click", () => {
-        if(turn0){
+        if (gameMode !== "human") return;
+
+        if (turn0) {
             box.innerText = "O";
             turn0 = false;
-        } else{
+        } else {
             box.innerText = "X";
             turn0 = true;
         }
@@ -38,37 +67,48 @@ boxes.forEach((box) => {
 });
 
 const disableBoxes = () => {
-    for(let box of boxes) {
+    for (let box of boxes) {
         box.disabled = true;
     }
 };
 
 const enableBoxes = () => {
-    for(let box of boxes) {
+    for (let box of boxes) {
         box.disabled = false;
         box.innerText = "";
     }
 };
 
 const showWinner = (winner) => {
-    msg.innerText = `Congatulations, Winner is ${winner}`;
+    msg.innerText = `Congratulations, Winner is ${winner}`;
     msgContainer.classList.remove("hide");
     disableBoxes();
 };
 
 const checkWinner = () => {
-    for(let pattern of winPatterns){
+    for (let pattern of winPatterns) {
         let pos1Val = boxes[pattern[0]].innerText;
         let pos2Val = boxes[pattern[1]].innerText;
         let pos3Val = boxes[pattern[2]].innerText;
 
-        if(pos1Val != "" && pos2Val != "" && pos3Val != ""){
-            if(pos1Val === pos2Val && pos2Val === pos3Val){
+        if (pos1Val !== "" && pos2Val !== "" && pos3Val !== "") {
+            if (pos1Val === pos2Val && pos2Val === pos3Val) {
                 showWinner(pos1Val);
             }
         }
     }
 };
 
+// Event listeners for reset and new game
 newGameBtn.addEventListener("click", resetGame);
 resetBtn.addEventListener("click", resetGame);
+
+// Back button functionality
+backBtn.addEventListener("click", () => {
+    mainGame.classList.add("hide");
+    msgContainer.classList.add("hide");
+    modeSelection.classList.remove("hide");
+    enableBoxes();
+    turn0 = true;
+    gameMode = "";
+});

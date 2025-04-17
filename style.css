@@ -73,10 +73,6 @@ body {
 
 .hide {
     display: none;
-}
-
-.hide {
-    display: none;
   }
   
   .mode-selection {
@@ -92,6 +88,26 @@ body {
     border: none;
     background-color: #191913;
     color: white;
+    cursor: pointer;
+  }
+
+  .bottom-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 2rem;
+  }
+  
+  #reset-btn,
+  #back-btn,
+  #new-btn {
+    padding: 1rem;
+    font-size: 1.25rem;
+    background-color: #191913;
+    color: #fff;
+    border-radius: 1rem;
+    border: none;
     cursor: pointer;
   }
   
